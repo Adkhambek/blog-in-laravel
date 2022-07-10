@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages/blog');
 });
+
+Route::prefix('admin')->group(function (){
+    // Category
+    Route::prefix('categories')->controller(CategoryController::class)->group(function(){
+        Route::get('create', 'createCategoryPage');
+    });
+});
+
+
+
+
