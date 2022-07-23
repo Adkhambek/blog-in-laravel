@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AdminCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,16 +19,9 @@ Route::get('/', function () {
 });
 
 Route::prefix('admin')->group(function (){
-    // Category
-    Route::prefix('categories')
-        ->controller(CategoryController::class)
-        ->group(function(){
-            Route::post('/', 'createCategory');
-            Route::patch('/{category}', 'editCategory' );
-            Route::delete('/{category}', 'destroy');
-            Route::get('create', 'createCategoryPage');
-            Route::get('/{category}/edit', 'editCategoryPage');
-    });
+
+    Route::resource('categories', AdminCategoryController::class);
+
 });
 
 

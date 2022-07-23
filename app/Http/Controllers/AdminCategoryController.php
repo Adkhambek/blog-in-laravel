@@ -6,22 +6,22 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rules;
 
-class CategoryController extends Controller
+class AdminCategoryController extends Controller
 {
-    public function createCategoryPage()
+    public function index()
+    {
+        return view('admin.category.index', ['categories'=> Category::all()]);
+    }
+
+    public function create()
     {
         return view('admin.category.create');
     }
 
-    public function editCategoryPage(Category $category)
+    public function store(Request $request)
     {
-        return view('admin.category.edit', ['category' => $category]);
-    }
-
-    public function createCategory(Request $req, Category $category){
-        $validator = Validator::make($req->all(), [
+        $validator = Validator::make($request->all(), [
             'name' => 'required|unique:categories|max:255'
         ]);
 
@@ -30,17 +30,22 @@ class CategoryController extends Controller
             return back()->with('error', $error);
         }
 
-        $slug = (string)Str::of($req['name'])->slug('-');
-        $category::create([
-            'name' => $req['name'],
+        $slug = (string)Str::of($request['name'])->slug('-');
+        Category::create([
+            'name' => $request['name'],
             'slug' => $slug
         ]);
         return back()->with('success', 'A new category has been created successfully');
     }
 
-    public function editCategory(Request $req, Category $category)
+    public function edit(Category $category)
     {
-        $validator = Validator::make($req->all(), [
+        return view('admin.category.edit', ['category' => $category]);
+    }
+
+    public function update(Request $request, Category $category)
+    {
+        $validator = Validator::make($request->all(), [
             'name' => 'required|max:255'
         ]);
 
@@ -49,9 +54,9 @@ class CategoryController extends Controller
             return back()->with('error', $error);
         }
 
-        $slug = (string)Str::of($req['name'])->slug('-');
+        $slug = (string)Str::of($request['name'])->slug('-');
         $category->update([
-            'name' => $req['name'],
+            'name' => $request['name'],
             'slug' => $slug
         ]);
         return back()->with('success', 'The category has been updated successfully');
