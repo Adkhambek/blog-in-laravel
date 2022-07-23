@@ -24,7 +24,10 @@ Route::prefix('admin')->group(function (){
         ->controller(CategoryController::class)
         ->group(function(){
             Route::post('/', 'createCategory');
+            Route::patch('/{category}', 'editCategory' );
+            Route::delete('/{category}', 'destroy');
             Route::get('create', 'createCategoryPage');
+            Route::get('/{category}/edit', 'editCategoryPage');
     });
 });
 

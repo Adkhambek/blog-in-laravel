@@ -12,7 +12,12 @@ class CategoryController extends Controller
 {
     public function createCategoryPage()
     {
-        return view('admin/category/create');
+        return view('admin.category.create');
+    }
+
+    public function editCategoryPage(Category $category)
+    {
+        return view('admin.category.edit', ['category' => $category]);
     }
 
     public function createCategory(Request $req, Category $category){
@@ -22,8 +27,7 @@ class CategoryController extends Controller
 
         if($validator->fails()){
             $error = $validator->errors()->first();
-            session()->flash('error', $error);
-            return redirect('/admin/categories/create');
+            return back()->with('error', $error);
         }
 
         $slug = (string)Str::of($req['name'])->slug('-');
@@ -31,7 +35,32 @@ class CategoryController extends Controller
             'name' => $req['name'],
             'slug' => $slug
         ]);
-        session()->flash('success', 'A new category has been created successfully');
-        return redirect('/admin/categories/create');
+        return back()->with('success', 'A new category has been created successfully');
+    }
+
+    public function editCategory(Request $req, Category $category)
+    {
+        $validator = Validator::make($req->all(), [
+            'name' => 'required|max:255'
+        ]);
+
+        if($validator->fails()){
+            $error = $validator->errors()->first();
+            return back()->with('error', $error);
+        }
+
+        $slug = (string)Str::of($req['name'])->slug('-');
+        $category->update([
+            'name' => $req['name'],
+            'slug' => $slug
+        ]);
+        return back()->with('success', 'The category has been updated successfully');
+    }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+
+        return back()->with('success', 'The category has been deleted successfully');
     }
 }
