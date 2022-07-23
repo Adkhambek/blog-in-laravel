@@ -11,23 +11,11 @@
                     <i class="fas fa-arrow-left"></i>
                     Back</a>
             </header>
-{{--            <% if(successMessage.length) { %>--}}
-{{--            <div class="alert alert-success" role="alert">--}}
-{{--                <p><%= successMessage %></p>--}}
-{{--                <button type="button" class="alert-close">--}}
-{{--                    <span class="fas fa-times"></span>--}}
-{{--                </button>--}}
-{{--            </div>--}}
-{{--            <%} else if(errorMessage.length) {%>--}}
-{{--            <div class="alert alert-warning" role="alert">--}}
-{{--                <p><%= errorMessage %></p>--}}
-{{--                <button type="button" class="alert-close">--}}
-{{--                    <span class="fas fa-times"></span>--}}
-{{--                </button>--}}
-{{--            </div>--}}
-{{--            <%}%>--}}
+            <x-success-message/>
+            <x-error-message/>
             <div class="form-box">
                 <form action="/admin/categories" method="POST">
+                    @csrf
                     <label>
                         <p>Category name:</p>
                         <input

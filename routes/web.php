@@ -20,8 +20,11 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function (){
     // Category
-    Route::prefix('categories')->controller(CategoryController::class)->group(function(){
-        Route::get('create', 'createCategoryPage');
+    Route::prefix('categories')
+        ->controller(CategoryController::class)
+        ->group(function(){
+            Route::post('/', 'createCategory');
+            Route::get('create', 'createCategoryPage');
     });
 });
 
