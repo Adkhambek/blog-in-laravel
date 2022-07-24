@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <x-admin.aside page="category"/>
+    <x-admin.aside page="image"/>
     <main class="main">
         <x-admin.header/>
         <section class="main-box">

@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <link href="/public/css/themes/summernote/summernote-lite.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="/public/css/dashboard.css" />
         <link
             rel="stylesheet"
@@ -14,13 +15,13 @@
         />
     </head>
     <body>
-        <%- include('./includes/aside.ejs', {page: 'newImage'})%>
+        <%- include('./includes/aside.ejs', {page: 'editImages'})%>
         <main class="main">
             <%- include('./includes/header.ejs')%>
             <section class="main-box">
                 <header class="top-header">
-                    <h1>New Image</h1>
-                    <a href="/admin/images" class="btn">
+                    <h1>Edit Post</h1>
+                    <a href="/admin/posts" class="btn">
                         <i class="fas fa-arrow-left"></i>
                         Back</a
                     >
@@ -41,27 +42,43 @@
                 </div>
                 <%}%>
                 <div class="form-box">
-                    <form action="/admin/images" method="post" enctype="multipart/form-data">
+                    <form action="/admin/posts/edit/<%= post.id%>" method="post" enctype="multipart/form-data">
                         <label>
                             <p>Title:</p>
                             <input
                                 type="text"
                                 name="title"
                                 class="title"
+                                value="<%= post.title%>"
                                 placeholder="Image title..."
                                 autocomplete="off"
                             />
                         </label>
                         <label class="file">
                             <p>Image:</p>
+                            <img src="/public/images/post/<%= post.image%>" alt="<%=post.title%>" />
                             <input class="file-input" type="file" name="image" />
                             <span class="file-custom"></span>
                         </label>
-                        <button type="submit" class="btn form-submit">Publish</button>
+                        <label>
+                            <p>Category:</p>
+                            <select name="categoryId">
+                                <% for(category of categories) { %>
+                                <option value="<%= category.id%>" <% if (category.id === selectedCategory.id) { %> selected <%}%> >  <%= category.name%></option>
+                                <%}%>
+                            </select>
+                        </label>
+                        <label>
+                            <p>Content:</p>
+                            <textarea id="summernote" name="content" class="content"><%= post.content%></textarea>
+                        </label>
+                        <button type="submit" class="btn form-submit">Edit</button>
                     </form>
                 </div>
             </section>
         </main>
+        <script src="/public/js/themes/jquery/jquery-3.5.1.slim.min.js"></script>
+        <script src="/public/js/themes/summernote/summernote-lite.min.js"></script>
         <script src="/public/js/dashboard.js"></script>
     </body>
 </html>

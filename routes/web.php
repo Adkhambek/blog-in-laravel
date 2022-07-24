@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\AdminPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ Route::get('/', function () {
 });
 
 Route::prefix('admin')->group(function (){
+    Route::resource('posts', AdminPostController::class);
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('images', ImageController::class);
 });

@@ -5,10 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link
-            rel="stylesheet"
-            href="/public/css/themes/datatable/datatables.min.css"
-        />
+        <link rel="stylesheet" href="/public/css/themes/datatable/datatables.min.css" />
         <link rel="stylesheet" href="/public/css/dashboard.css" />
         <link
             rel="stylesheet"
@@ -18,13 +15,13 @@
         />
     </head>
     <body>
-        <%- include('./includes/aside.ejs', {page: 'images'})%>
+        <%- include('./includes/aside.ejs', {page: 'posts'})%>
         <main class="main">
             <%- include('./includes/header.ejs')%>
             <section class="main-box table-container">
                 <header class="top-header">
-                    <h1>Images</h1>
-                    <a href="/admin/images/new" class="btn">New Image</a>
+                    <h1>Blog Posts</h1>
+                    <a href="/admin/posts/new" class="btn">New Post</a>
                 </header>
                 <% if(successMessage.length) { %>
                 <div class="alert alert-success" role="alert">
@@ -41,54 +38,48 @@
                     </button>
                 </div>
                 <%}%>
-                <table
-                    id="table"
-                    class="table display cell-border"
-                    style="width: 100%"
-                >
+                <table id="table" class="table display cell-border" style="width: 100%">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Image</th>
                             <th>Title</th>
+                            <th>Category</th>
+                            <th>Views</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% let num = 1 %> <%for(image of images){%>
+                        <% let num = 1%> <% for(post of posts){ %>
                         <tr>
                             <td><%= num%></td>
                             <td>
-                                <img src="/public/images/post/<%= image.image%>" alt="<%=image.title%>" />
+                                <img src="/public/images/post/<%= post.image%>" alt="<%=post.title%>" />
                             </td>
                             <td>
-                                <p><%=image.title%></p>
+                                <p><%= post.title%></p>
+                            </td>
+                            <td>
+                                <p><%= post.category%></p>
+                            </td>
+                            <td>
+                                <p><%= post.views%></p>
                             </td>
                             <td>
                                 <div class="actions">
-                                    <a href="/admin/images/delete/<%=image.id%>" class="delete">
+                                    <a href="/admin/posts/delete/<%= post.id%>" class="delete">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
-                                    <a href ="/admin/images/edit/<%=image.id%>" class="edit">
+                                    <a href="/admin/posts/edit/<%= post.id%>" class="edit">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <input
-                                        type="hidden"
-                                        value="<img src='/public/images/post/<%= image.image%>' alt='<%= image.title%>'>"
-                                        class="hiddenInput"
-                                    />
-                                        <button
-                                            type="button"
-                                            href="#"
-                                            class="copy"
-                                        >
-                                            <i class="fas fa-clipboard" ></i>
-                                        </button>
-                                    </div>
+                                    <a href="/posts/<%= post.slug%>" class="preview">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
                                 </div>
                             </td>
                         </tr>
-                        <% num++ %> <%}%>
+                        <%num++ }%>
                     </tbody>
                 </table>
             </section>
@@ -99,12 +90,11 @@
         <script>
             $(document).ready(function () {
                 $("#table").DataTable({
-                    responsive: true,
-                    columnDefs: [
-                        { width: "10%", targets: 0 },
-                        { width: "20%", targets: 1 },
-                        { width: "60%", targets: 2 },
-                    ],
+                    responsive: true
+                    // columnDefs: [
+                    //     { width: "20%", targets: 0 },
+                    //     { width: "40%", targets: 1 },
+                    // ],
                 });
             });
         </script>
