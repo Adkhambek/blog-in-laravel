@@ -47,6 +47,14 @@
                                 <a href="/admin/images/{{$image->id}}/edit" class="edit">
                                     <i class="fas fa-edit"></i>
                                 </a>
+                                <input
+                                    type="hidden"
+                                    value="<img src='{{asset('/storage/' . $image->image)}}' alt='{{$image->title}}'>"
+                                    class="hiddenInput"
+                                />
+                                <button type="button" class="copy">
+                                    <i class="fas fa-clipboard" ></i>
+                                </button>
                             </div>
                         </td>
                     </tr>
