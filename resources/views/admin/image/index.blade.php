@@ -10,8 +10,8 @@
         <x-admin.header/>
         <section class="main-box table-container">
             <header class="top-header">
-                <h1>Categories</h1>
-                <a href="/admin/categories/create" class="btn">New Category</a>
+                <h1>Images</h1>
+                <a href="/admin/images/create" class="btn">New Image</a>
             </header>
             <x-success-message/>
             <x-error-message/>
@@ -19,7 +19,8 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Title</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -27,20 +28,23 @@
                 @php
                     $i = 1
                 @endphp
-                @foreach($categories as $category)
+                @foreach($images as $image)
                     <tr>
                         <td>{{$i}}</td>
-                        <td style="width: 100px">
-                            <p class="category-name">{{$category->name}}</p>
+                        <td>
+                            <img src="{{asset('storage/'.$image->image)}}" alt="{{$image->title}}" />
+                        </td>
+                        <td>
+                            <p>{{$image->title}}</p>
                         </td>
                         <td>
                             <div class="actions">
-                                <form method="POST" action="/admin/categories/{{$category->id}}">
+                                <form method="POST" action="/admin/images/{{$image->id}}">
                                     @csrf
                                     @method('DELETE')
                                     <button class="delete"><i class="fas fa-trash-alt"></i></button>
                                 </form>
-                                <a href="/admin/categories/{{$category->id}}/edit" class="edit">
+                                <a href="/admin/images/{{$image->id}}/edit" class="edit">
                                     <i class="fas fa-edit"></i>
                                 </a>
                             </div>
@@ -61,8 +65,9 @@
             $("#table").DataTable({
                 responsive: true,
                 columnDefs: [
-                    { width: "20%", targets: 0 },
-                    { width: "40%", targets: 1 }
+                    { width: "10%", targets: 0 },
+                    { width: "20%", targets: 1 },
+                    { width: "60%", targets: 2 },
                 ]
             });
         });
