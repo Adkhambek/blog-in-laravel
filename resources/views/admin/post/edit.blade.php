@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Post update page');
+
 @section('stylesheets')
     <link href="/css/themes/summernote/summernote-lite.min.css" rel="stylesheet"/>
 @endsection

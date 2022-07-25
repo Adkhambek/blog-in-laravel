@@ -1,9 +1,12 @@
 @extends('layouts.admin')
 
+@section('title', 'Dashboard page');
+
 @section('content')
     <x-admin.aside page="dashboard"/>
-    <main class="main">
+    <main class="main dashboard">
         <x-admin.header/>
+        <x-success-message/>
         <section class="main-box">
             <h1>Dashboard</h1>
             <div class="statistics">

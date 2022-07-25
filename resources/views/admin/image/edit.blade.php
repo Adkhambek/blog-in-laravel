@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Image update page');
+
 @section('content')
     <x-admin.aside page="image"/>
     <main class="main">

@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,11 @@ Route::get('/', function () {
     return view('pages/blog');
 });
 
-Route::prefix('admin')->group(function (){
+Route::get('login', [LoginController::class, 'create']);
+Route::post('login', [LoginController::class, 'store']);
+Route::get('logout', [LoginController::class, 'destroy']);
+
+Route::prefix('admin')->middleware('admin')->group(function (){
     Route::get('dashboard', [DashboardController::class, 'index']);
     Route::resource('posts', AdminPostController::class);
     Route::resource('categories', AdminCategoryController::class);

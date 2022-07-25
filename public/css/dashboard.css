@@ -469,3 +469,7 @@ input[type=file]::file-selector-button {
     background-color: #c00
 }
 
+.dashboard .alert{
+    width: 100%;
+}
+

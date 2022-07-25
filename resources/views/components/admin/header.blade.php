@@ -4,5 +4,5 @@
             <i class="fas fa-bars"></i>
         </button>
     </div>
-    <a class="logout btn" href="/admin/logout">Logout</a>
+    <a class="logout btn" href="/logout">Logout</a>
 </header>
