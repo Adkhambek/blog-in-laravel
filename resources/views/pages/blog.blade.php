@@ -16,55 +16,20 @@
         <div class="container">
             <section class="blog">
                 <h1 class="blog-title visually-hidden">The most recent blog posts</h1>
+                @foreach($posts as $post)
                 <article class="blog-post">
-                    <a href="#" class="image-link">
-                        <img src="/images/post/image.png" class="post-image" alt="title">
+                    <a href="/posts/{{$post->slug}}" class="image-link">
+                        <img src="/storage/{{$post->image}}" class="post-image" alt="{{$post->title}}">
                     </a>
                     <div class="post-container">
-                        <a href="#" class="title-link">
-                            <h2 class="post-title">post title</h2>
+                        <a href="/posts/{{$post->slug}}" class="title-link">
+                            <h2 class="post-title">{{$post->title}}</h2>
                         </a>
-                        <p class="post-description">post description</p>
-                        <a href="#" class="post-link btn">read more</a>
+                        <p class="post-description">{!! $post->excerpt !!}</p>
+                        <a href="/posts/{{$post->slug}}" class="post-link btn">read more</a>
                     </div>
                 </article>
-                <article class="blog-post">
-                    <a href="#" class="image-link">
-                        <img src="/images/post/image.png" class="post-image" alt="title">
-                    </a>
-                    <div class="post-container">
-                        <a href="#" class="title-link">
-                            <h2 class="post-title">post title</h2>
-                        </a>
-                        <p class="post-description">post description</p>
-                        <a href="#" class="post-link btn">read more</a>
-                    </div>
-                </article>
-                <article class="blog-post">
-                    <a href="#" class="image-link">
-                        <img src="/images/post/image.png" class="post-image" alt="title">
-                    </a>
-                    <div class="post-container">
-                        <a href="#" class="title-link">
-                            <h2 class="post-title">post title</h2>
-                        </a>
-                        <p class="post-description">post description</p>
-                        <a href="#" class="post-link btn">read more</a>
-                    </div>
-                </article>
-                <article class="blog-post">
-                    <a href="#" class="image-link">
-                        <img src="/images/post/image.png" class="post-image" alt="title">
-                    </a>
-                    <div class="post-container">
-                        <a href="#" class="title-link">
-                            <h2 class="post-title">post title</h2>
-                        </a>
-                        <p class="post-description">post description</p>
-                        <a href="#" class="post-link btn">read more</a>
-                    </div>
-                </article>
-
+                @endforeach
                 <div class="pagination">
                     <ul class="pagination-list">
                         <li class="pagination-item">

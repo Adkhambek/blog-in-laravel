@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Category create page');
+@section('title', 'Category create page')
 
 @section('content')
     <x-admin.aside page="category"/>

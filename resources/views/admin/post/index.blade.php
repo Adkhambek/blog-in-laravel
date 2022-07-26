@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Post page');
+@section('title', 'Post page')
 
 @section('stylesheets')
     <link rel="stylesheet" href="/css/themes/datatable/datatables.min.css" />
