@@ -11,7 +11,7 @@ class AdminCategoryController extends Controller
 {
     public function index()
     {
-        return view('admin.category.index', ['categories'=> Category::all()]);
+        return view('admin.category.index', ['categories'=> Category::orderBy('id', 'desc')->get()]);
     }
 
     public function create()

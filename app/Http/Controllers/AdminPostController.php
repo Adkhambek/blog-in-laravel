@@ -11,7 +11,7 @@ class AdminPostController extends Controller
 {
     public function index()
     {
-        return view('admin.post.index', ['posts'=> Post::all()]);
+        return view('admin.post.index', ['posts'=> Post::orderBy('id', 'desc')->get()]);
     }
 
     public function create()

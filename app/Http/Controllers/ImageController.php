@@ -9,7 +9,7 @@ class ImageController extends Controller
 {
     public function index()
     {
-        return view('admin.image.index', ['images'=> Image::all()]);
+        return view('admin.image.index', ['images'=> Image::orderBy('id', 'desc')->get()]);
     }
 
     public function create()

@@ -13,7 +13,8 @@ class BlogController extends Controller
         return view('pages.blog',[
             'categories' => Category::all(),
             'latest_post' => Post::orderBy('id', 'desc')->first(),
-            'popular_posts' => Post::orderBy('views', 'desc')->limit(3)->get()
+            'popular_posts' => Post::orderBy('views', 'desc')->limit(3)->get(),
+            'posts' => Post::orderBy('id', 'desc')->paginate(1)
         ]);
     }
 }
