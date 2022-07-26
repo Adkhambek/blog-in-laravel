@@ -36,6 +36,13 @@
                         @enderror
                     </label>
                     <label>
+                        <p>Excerpt:</p>
+                        <textarea id="excerpt" name="excerpt" class="content">{{old('excerpt')}}</textarea>
+                        @error('excerpt')
+                        <p class="error-message">{{$message}}</p>
+                        @enderror
+                    </label>
+                    <label>
                         <p>Category:</p>
                         <select name="category_id">
                             @foreach($categories as $category)
@@ -59,7 +66,7 @@
                     </label>
                     <label>
                         <p>Content:</p>
-                        <textarea id="summernote" name="content" class="content">{{old('content')}}</textarea>
+                        <textarea id="content" name="content" class="content">{{old('content')}}</textarea>
                         @error('content')
                         <p class="error-message">{{$message}}</p>
                         @enderror
@@ -72,7 +79,7 @@
     <script src="/js/themes/jquery/jquery-3.5.1.slim.min.js"></script>
     <script src="/js/themes/summernote/summernote-lite.min.js"></script>
     <script>
-        $("#summernote").summernote({
+        $("#content").summernote({
             tabsize: 2,
             height: 120,
             toolbar: [
@@ -83,6 +90,15 @@
                 ["table", ["table"]],
                 ["insert", ["link", "picture", "video"]],
                 ["view", ["fullscreen", "codeview", "help"]]
+            ]
+        });
+
+        $("#excerpt").summernote({
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+                ["font", ["bold", "underline", "clear"]],
+                ["view", ["fullscreen", "codeview"]]
             ]
         });
     </script>

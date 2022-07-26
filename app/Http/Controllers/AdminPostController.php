@@ -24,6 +24,7 @@ class AdminPostController extends Controller
         $attributes = $request->validate( [
             'title' => 'required|max:255',
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:5000',
+            'excerpt' => 'required|max:150',
             'content' => 'required',
             'category_id' => 'required|exists:categories,id'
         ]);
@@ -44,6 +45,7 @@ class AdminPostController extends Controller
     {
         $attributes = $request->validate( [
             'title' => 'required|max:255',
+            'excerpt' => 'required|max:150',
             'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:5000',
             'content' => 'required',
             'category_id' => 'required|exists:categories,id'

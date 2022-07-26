@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('title');
             $table->string('slug');
             $table->string('image');
+            $table->string('excerpt');
             $table->longText('content');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->integer('views')->default(0);

@@ -10,8 +10,8 @@
 @endsection
 
 @section('content')
-    <x-top-posts/>
-    <x-popular-posts/>
+    <x-top-post :post="$latest_post"/>
+    <x-popular-posts :posts="$popular_posts"/>
     <main class="main">
         <div class="container">
             <section class="blog">

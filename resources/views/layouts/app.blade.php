@@ -44,18 +44,11 @@
 <nav class="nav">
     <div class="container">
         <ul class="nav-list">
+            @foreach($categories as $category)
             <li class="nav-item">
-                <a href="#" class="nav-link">PHP</a>
+                <a href="/categories/{{$category->slug}}" class="nav-link">{{$category->name}}</a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Nodejs</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Larvel</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Javascript</a>
-            </li>
+            @endforeach
             <li class="nav-item search">
                 <button class="search-btn">
                     <span class="fas fa-search"></span>
