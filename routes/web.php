@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\ImageController;
@@ -18,13 +19,13 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('pages/blog');
-});
+Route::get('/', [BlogController::class, 'index']);
 
-Route::get('login', [LoginController::class, 'create']);
-Route::post('login', [LoginController::class, 'store']);
-Route::get('logout', [LoginController::class, 'destroy']);
+Route::controller(LoginController::class)->group(function () {
+    Route::get('login', 'create');
+    Route::post('login', 'store');
+    Route::get('logout', 'destroy');
+});
 
 Route::prefix('admin')->middleware('admin')->group(function (){
     Route::get('dashboard', [DashboardController::class, 'index']);
