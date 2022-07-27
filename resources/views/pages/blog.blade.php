@@ -30,35 +30,7 @@
                     </div>
                 </article>
                 @endforeach
-                <div class="pagination">
-                    <ul class="pagination-list">
-                        <li class="pagination-item">
-                            <a href="#" class="pagination-link prev">
-                                <span class="fas fa-chevron-left"></span>
-                            </a>
-                        </li>
-                        <li class="pagination-item">
-                            <a href="#" class="pagination-link active">1</a>
-                        </li>
-                        <li class="pagination-item">
-                            <a href="#" class="pagination-link">2</a>
-                        </li>
-                        <li class="pagination-item">
-                            <a href="#" class="pagination-link">...</a>
-                        </li>
-                        <li class="pagination-item">
-                            <a href="#" class="pagination-link">5</a>
-                        </li>
-                        <li class="pagination-item">
-                            <a href="#" class="pagination-link">6</a>
-                        </li>
-                        <li class="pagination-item">
-                            <a href="#" class="pagination-link next">
-                                <span class="fas fa-chevron-right"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                {{$posts->links('vendor.pagination.custom')}}
             </section>
             <x-aside/>
         </div>
