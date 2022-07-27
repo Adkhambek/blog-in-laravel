@@ -29,4 +29,9 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function incrementReadCount() {
+        $this->views++;
+        return $this->save();
+    }
 }
