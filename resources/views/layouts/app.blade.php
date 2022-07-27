@@ -46,7 +46,7 @@
         <ul class="nav-list">
             @foreach($categories as $category)
             <li class="nav-item">
-                <a href="/categories/{{$category->slug}}" class="nav-link">{{$category->name}}</a>
+                <a href="/?category={{$category->slug}}" class="nav-link">{{$category->name}}</a>
             </li>
             @endforeach
             <li class="nav-item search">
@@ -55,8 +55,8 @@
                 </button>
             </li>
         </ul>
-        <form action="/search" method="GET" class="search-form hidden">
-            <input class="search-input" name="s" type="search" placeholder="search..." autocomplete="off" />
+        <form action="/" method="GET" class="search-form hidden">
+            <input class="search-input" name="search" value="{{request('search')}}" type="search" placeholder="search..." autocomplete="off" />
             <button type="button" class="close-btn">
                 <span class="fas fa-times"></span>
             </button>

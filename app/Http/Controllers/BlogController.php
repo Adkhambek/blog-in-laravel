@@ -12,9 +12,11 @@ class BlogController extends Controller
     {
         return view('pages.blog',[
             'categories' => Category::all(),
-            'latest_post' => Post::orderBy('id', 'desc')->first(),
+            'latest_post' => Post::latest()->first(),
             'popular_posts' => Post::orderBy('views', 'desc')->limit(3)->get(),
-            'posts' => Post::orderBy('id', 'desc')->paginate(1)
+            'posts' => Post::latest()->filter(
+                request(['search', 'category'])
+            )->paginate(1)->withQueryString()
         ]);
     }
 }
