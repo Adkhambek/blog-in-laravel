@@ -12,7 +12,7 @@
         @foreach ($elements as $element)
             @if(is_string($element))
                     <li class="pagination-item">
-                        <span class="pagination-link active">...</span>
+                        <span class="pagination-link">...</span>
                     </li>
             @endif
             @if(is_array($element))
