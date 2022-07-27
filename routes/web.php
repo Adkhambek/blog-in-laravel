@@ -7,6 +7,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::get('/', [BlogController::class, 'index']);
+Route::get('/posts/{post:slug}', [PostController::class, 'index']);
 
 Route::controller(LoginController::class)->group(function () {
     Route::get('login', 'create');

@@ -16,7 +16,7 @@ class BlogController extends Controller
             'popular_posts' => Post::orderBy('views', 'desc')->limit(3)->get(),
             'posts' => Post::latest()->filter(
                 request(['search', 'category'])
-            )->paginate(1)->withQueryString()
+            )->paginate(5)->withQueryString()
         ]);
     }
 }

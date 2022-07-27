@@ -1,12 +1,16 @@
 @extends('layouts.app')
 
 @section('title', 'blog site')
-@section('description', 'blog description')
-@section('url', 'https://blog.uz')
-@section('imageUrl', 'https://blog.uz/logo.png')
-@section('siteName', 'mynewblog')
+@section('description', config('constants.slogan'))
+@section('url', config('app.url'))
+@section('imageUrl', asset('/images/logo.png'))
+@section('siteName', config('app.name'))
 @section('nextPage')
-    <link rel="next" href="https://blog.uz/page/2" />
+    <link rel="next" href="{{config('app.url')}}/?page=2" />
+@endsection
+
+@section('stylesheets')
+    <link rel="stylesheet" href="/css/blog.css">
 @endsection
 
 @section('content')

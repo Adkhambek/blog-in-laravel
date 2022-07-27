@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
           integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/blog.css">
+    @yield('stylesheets')
     <meta property="title" content="@yield('title')"/>
     <meta property="og:title" content="@yield('title')"/>
     <meta property="og:type" content="website" />
