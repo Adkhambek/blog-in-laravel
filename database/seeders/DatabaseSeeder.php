@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt(config('login.password'))
         ]);
         Category::factory(4)->create();
-        Post::factory(100)->create();
+//        in development environment only:
+//        Post::factory(100)->create();
 
     }
 }

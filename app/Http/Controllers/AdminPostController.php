@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class AdminPostController extends Controller
 {
     public function index()
     {
-        return view('admin.post.index', ['posts'=> Post::orderBy('id', 'desc')->get()]);
+        return view('admin.post.index', ['posts'=> Post::with('category')->orderBy('id', 'desc')->get()]);
     }
 
     public function create()
@@ -21,6 +22,8 @@ class AdminPostController extends Controller
 
     public function store(Request $request)
     {
+        Cache::forget('latest_post');
+        Cache::forget('popular_posts');
         $attributes = $request->validate( [
             'title' => 'required|max:255',
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:5000',
@@ -38,11 +41,16 @@ class AdminPostController extends Controller
 
     public function edit(Post $post)
     {
-        return view('admin.post.edit', ['post' => $post, 'categories' => Category::all()]);
+        return view('admin.post.edit', [
+            'post' => $post,
+            'categories' => Category::all()
+        ]);
     }
 
     public function update(Request $request, Post $post)
     {
+        Cache::forget('latest_post');
+        Cache::forget('popular_posts');
         $attributes = $request->validate( [
             'title' => 'required|max:255',
             'excerpt' => 'required|max:150',
@@ -65,6 +73,8 @@ class AdminPostController extends Controller
 
     public function destroy(Post $post)
     {
+        Cache::forget('latest_post');
+        Cache::forget('popular_posts');
         $image_path = public_path() . "/storage/" . $post['image'];
         unlink($image_path);
         $post->delete();

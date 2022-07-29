@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -21,6 +22,7 @@ class AdminCategoryController extends Controller
 
     public function store(Request $request)
     {
+        Cache::forget('categories');
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:categories|max:255'
         ]);
@@ -45,6 +47,7 @@ class AdminCategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
+        Cache::forget('categories');
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255'
         ]);
@@ -64,6 +67,7 @@ class AdminCategoryController extends Controller
 
     public function destroy(Category $category)
     {
+        Cache::forget('categories');
         $category->delete();
 
         return back()->with('success', 'The category has been deleted successfully');
